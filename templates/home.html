@@ -1,0 +1,46 @@
+<head>
+
+    <link rel="stylesheet" href="/static/css/home.css">
+
+</head>
+
+
+<body>
+
+    <h1>Welcome, <span id="username">{{username}}</span>!</h1>
+
+    <form action="/main" method="post">
+        <input type="text" name="query" placeholder="Search...">
+        <input type="submit" value="Search">
+    </form>
+
+    <div class="cardwrapper">
+        {% for i in books %}
+            <center>
+                <div class="bookcard">
+                        <a class="div1"><b>{{i['title']}}</b></a><br>
+                        <a class="div2"><i><div class="author">{{', '.join(i['authors'])}}</div><div class="pages">Pages: {{i['pageCount']}}</div></i></a>
+                        <img class="div3" src="{{i['img']}}" alt="">
+                        <a class="div4">{{i['description']}}</a>
+                    
+                </div>
+            </center>
+        {% endfor %}
+    </div>
+
+    <br>
+
+    <form action="/logout" id="logout" method="post">
+        <input name="logout" type="submit" value="Sign Out">
+    </form>
+
+</body>
+
+
+<script>
+    // Generate a random color for the username
+    var username = document.getElementById("username");
+    var colors = ["#62B365", "#4378BD", "#473982", "#F5B96C", "#D55369", "#EE96AD"];
+    var randomColor = colors[Math.floor(Math.random() * colors.length)];
+    username.style.color = randomColor;
+</script>
